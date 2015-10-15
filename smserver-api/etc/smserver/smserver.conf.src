@@ -1,0 +1,8 @@
+# SMServer host name or IP
+SMSERVER_HOST="smserver"
+# SMServer port
+SMSERVER_PORT="8080"
+# SMServer destination numbers
+SMSERVER_DEST[0]="0000000000"
+SMSERVER_DEST[1]="0000000000"
+# And so on
