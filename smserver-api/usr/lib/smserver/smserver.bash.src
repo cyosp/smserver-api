@@ -1,0 +1,49 @@
+#!/bin/bash
+
+###############################################################################
+#                                                                             #
+# Author: cyosp                                                               #
+# Version: 1.0.0                                                              #
+#                                                                             #
+# --------------------------------------------------------------------------- #
+#                                                                             #
+# 1.0.0 - 19/10/2015                                                          #
+#  - First version                                                            #
+#                                                                             #
+###############################################################################
+
+# $DEV_ROOT is a variable set in development mode to specify locatation of the configuration file
+# In Production $DEV_ROOT is not set in order to have configuration file stored in /etc
+. $DEV_ROOT/etc/smserver/smserver.conf.src
+
+#
+# callSMServer function sends the SMS content in argument(s) following information defined in the configuration file
+# SMS content sent is prefixed with the name of the script which has sourced the library
+# It allows to know when receiving the SMS which process has sent it
+# Example: myScript.bash use the library and calls http://smserver:8080/smserver/sms/send?nbr=0000&content=Test
+#          will send the SMS: "[myScript.bash] Test"
+# Each HTTP call result is written on standard output
+#
+# Return 1 if one of the call has failed, 0 otherwise
+#
+function callSMServer()
+{
+	local returnCode=0
+
+	local SRC_SCRIPT_NAME=`basename "$0"`
+	local SMS_CONTENT="[$SRC_SCRIPT_NAME] $*"
+
+	for i in "${SMSERVER_DEST[@]}"
+	do
+		OUTPUT=`wget "http://$SMSERVER_HOST:$SMSERVER_PORT/smserver/sms/send?nbr=$SMSERVER_DEST_NBR&content=$SMS_CONTENT" 2>&1`;
+		if [ $? -eq 0 ]
+		then
+			echo "SMS sent"
+		else
+			returnCode=1
+			echo "[ERROR] Fail to send SMS to $i. Details: $OUTPUT"
+		fi
+	done
+
+	return $returnCode
+}

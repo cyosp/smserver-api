@@ -1,0 +1,9 @@
+Package: smserver-api
+Version: 1.0.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, wget
+Maintainer: cyosp
+Description: A Bash API for SMServer Android App
+Homepage: http://cyosp.com
