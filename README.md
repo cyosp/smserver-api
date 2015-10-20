@@ -8,8 +8,11 @@ A Bash API for SMServer Android App
 *smserver-api* is a Bash library to centralize calls to [SMServer](http://github.com/cyosp/SMServer) Android App.
 This library is composed of two files:
  * `/etc/smserver/smserver.conf.src`
+
 	*The configuration file*
+
  * `/usr/lib/smserver/smserver.bash.src`
+
 	*The library*
 
 Both are located inside the directory **smserver-api** which allows to build a Debian package
