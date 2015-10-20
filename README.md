@@ -65,6 +65,32 @@ If there is at least one problem with one of the HTTP calls, function return *1*
 You can build a Debian package with the following commands:
 
 ```bash
-cd /...../smserver-api
+# Move to the repository directory
+cd /github/smserver-api/repository/path
+# Generate the Debian package
 sudo dpkg-deb --build smserver-api
+# Update the package name following Debian convention
+VERSION=$(grep "Version" smserver-api/DEBIAN/control | cut -d ' ' -f 2)
+ARCH=$(grep "Architecture" smserver-api/DEBIAN/control | cut -d ' ' -f 2)
+mv smserver-api.deb smserver-api_${VERSION}_${ARCH}.deb
+```
+
+## Install the Debian package
+
+These steps allows you to install [smserver-api](http://github.com/cyosp/smserver-api) Debian package:
+
+```bash
+# Move to the repository directory
+cd /github/smserver-api/repository/path
+# Install the latest Debian package version
+sudo dpkg -i $(ls -mr smserver-api*.deb | cut -d ',' -f 1)
+```
+
+## Remove the Debian package
+
+[smserver-api](http://github.com/cyosp/smserver-api) Debian package can be removed with this command line:
+
+```bash
+# Remove the Debian package
+sudo apt-get remove smserver-api
 ```
