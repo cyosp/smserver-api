@@ -2,7 +2,7 @@
 
 A Bash API for SMServer Android App
 
-![Stable version](https://img.shields.io/badge/stable-1.0.0-blue.svg)
+![Stable version](https://img.shields.io/badge/stable-1.0.1-blue.svg)
 [![BSD-3 license](https://img.shields.io/badge/license-BSD--3--Clause-428F7E.svg)](https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29)
 
 *smserver-api* is a Bash library to centralize calls to [SMServer](http://github.com/cyosp/SMServer) Android App.
