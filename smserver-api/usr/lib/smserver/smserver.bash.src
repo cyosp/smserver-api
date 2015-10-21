@@ -3,10 +3,12 @@
 ###############################################################################
 #                                                                             #
 # Author: cyosp                                                               #
-# Version: 1.0.0                                                              #
+# Version: 1.0.1                                                              #
 #                                                                             #
 # --------------------------------------------------------------------------- #
 #                                                                             #
+# 1.0.1 - 21/10/2015                                                          #
+#  - Fix: Phone numbers were not retrieved from configuration                 #
 # 1.0.0 - 19/10/2015                                                          #
 #  - First version                                                            #
 #                                                                             #
@@ -35,7 +37,7 @@ function callSMServer()
 
 	for i in "${SMSERVER_DEST[@]}"
 	do
-		OUTPUT=`wget "http://$SMSERVER_HOST:$SMSERVER_PORT/smserver/sms/send?nbr=$SMSERVER_DEST_NBR&content=$SMS_CONTENT" 2>&1`;
+		OUTPUT=`wget "http://$SMSERVER_HOST:$SMSERVER_PORT/smserver/sms/send?nbr=${i}&content=$SMS_CONTENT" 2>&1`;
 		if [ $? -eq 0 ]
 		then
 			echo "SMS sent"

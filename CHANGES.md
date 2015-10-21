@@ -1,3 +1,6 @@
+### V 1.0.1 21/10/2015
+ * Fix: Phone numbers were not retrieved from configuration
+
 ### V 1.0.0-1 20/10/2015
  * Starting this version Debian package doesn't delete the [smserver-api](http://github.com/cyosp/smserver-api) configuration file when the package is removed
  * Unnecessary Debian package scripts are deleted
